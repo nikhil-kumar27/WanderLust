@@ -117,9 +117,9 @@ app.use((req, res, next) => {
 });
 
 //root route
-app.get("/", (req,res)=>{
-    res.send("hi,I am root");
-});
+// app.get("/", (req,res)=>{
+//     res.send("hi,I am root");
+// });
 
 
 
