@@ -1,0 +1,131 @@
+<% layout("/layouts/boilerplate") %>
+
+<link rel="stylesheet" href="/stylesheets/index.css">
+
+<!-- FILTERS -->
+
+<div id="filters">
+
+    <a href="/listings"
+        class="filter <%= !category ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-border-all"></i>
+        <p>All</p>
+    </a>
+
+    <a href="/listings?category=Beach"
+        class="filter <%= category === 'Beach' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p>Beach</p>
+    </a>
+
+    <a href="/listings?category=Mountains"
+        class="filter <%= category === 'Mountains' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-mountain"></i>
+        <p>Mountains</p>
+    </a>
+
+    <a href="/listings?category=Camping"
+        class="filter <%= category === 'Camping' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-tent"></i>
+        <p>Camping</p>
+    </a>
+
+    <a href="/listings?category=Castles"
+        class="filter <%= category === 'Castles' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-chess-rook"></i>
+        <p>Castles</p>
+    </a>
+
+    <a href="/listings?category=City"
+        class="filter <%= category === 'City' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-city"></i>
+        <p>City</p>
+    </a>
+
+    <a href="/listings?category=Lake"
+        class="filter <%= category === 'Lake' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-water"></i>
+        <p>Lake</p>
+    </a>
+
+    <a href="/listings?category=Desert"
+        class="filter <%= category === 'Desert' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-sun"></i>
+        <p>Desert</p>
+    </a>
+
+    <a href="/listings?category=Farms"
+        class="filter <%= category === 'Farms' ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-wheat-awn"></i>
+        <p>Farms</p>
+    </a>
+
+    <a href="/listings?category=Arctic"
+        class="filter <%= category === 'Arctic' ? 'active-filter' : '' %>">
+        <i class="fa-regular fa-snowflake"></i>
+        <p>Arctic</p>
+    </a>
+
+</div>
+
+<!-- LISTINGS -->
+
+<div class="listings-grid">
+
+    <% for(let listing of allListings){ %>
+
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+
+            <div class="listing-card">
+
+                <div class="image-container">
+
+                    <img
+                        src="<%= listing.image.url %>"
+                        alt="<%= listing.title %>"
+                        class="listing-image"
+                    >
+
+                    <div class="wishlist-btn">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+
+                </div>
+
+                <div class="listing-info">
+
+                    <div class="listing-header">
+
+                        <h5 class="listing-title">
+                            <%= listing.title %>
+                        </h5>
+
+                        <span class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.9
+                        </span>
+
+                    </div>
+
+                    <p class="listing-location">
+                        <%= listing.location %>, <%= listing.country %>
+                    </p>
+
+                    <p class="listing-tagline">
+                        Great place to stay
+                    </p>
+
+                    <p class="listing-price">
+                        ₹ <%= listing.price.toLocaleString() %>
+                        <span>/ night</span>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    <% } %>
+
+</div>

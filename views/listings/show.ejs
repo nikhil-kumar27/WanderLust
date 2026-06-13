@@ -1,0 +1,214 @@
+<% layout("/layouts/boilerplate") %>
+
+<link rel="stylesheet" href="/stylesheets/show.css">
+
+
+<div class="show-page">
+
+    <div class="show-container">
+
+        <div class="image-container">
+            <img src="<%= listing.image.url %>" alt="Listing">
+        </div>
+
+        <div class="listing-details">
+
+            <h1 class="listing-title">
+                <%= listing.title %>
+            </h1>
+
+            <p class="listing-description">
+                <%= listing.description %>
+            </p>
+
+            <div class="listing-info">
+
+                <p class="listing-price">
+                    ₹ <%= listing.price %> / night
+                </p>
+
+                <p class="listing-location">
+                    <%= listing.location %>, <%= listing.country %>
+                </p>
+
+            </div>
+
+            <button class="reserve-btn">
+                Reserve
+            </button>
+
+            <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
+
+                <div class="button-group">
+
+                    <a href="/listings/<%= listing._id %>/edit">
+                        <button class="edit-btn">
+                            Edit Listing
+                        </button>
+                    </a>
+
+                    <form
+                        action="/listings/<%= listing._id %>?_method=DELETE"
+                        method="POST"
+                    >
+                        <button class="delete-btn">
+                            Delete Listing
+                        </button>
+                    </form>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+    <!-- Review Form -->
+
+    <div class="review-section">
+
+        <h2 class="review-title">
+            Leave a Review
+        </h2>
+
+        <form
+            action="/listings/<%= listing._id %>/reviews"
+            method="POST"
+            class="review-form needs-validation"
+            novalidate
+        >
+
+            <div class="form-group">
+
+                <label for="rating">Rating</label>
+
+                <select
+                    id="rating"
+                    name="review[rating]"
+                    required
+                    class="form-control"
+                >
+                    <option value="">Select Rating</option>
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ Very Good</option>
+                    <option value="3">⭐⭐⭐ Good</option>
+                    <option value="2">⭐⭐ Fair</option>
+                    <option value="1">⭐ Poor</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="comment">
+                    Your Review
+                </label>
+
+                <textarea
+                    id="comment"
+                    name="review[comment]"
+                    placeholder="Tell future guests about your experience..."
+                    required
+                    class="form-control"
+                ></textarea>
+
+            </div>
+
+            <button
+                type="submit"
+                class="review-btn"
+            >
+                Submit Review
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Reviews -->
+
+    <section class="guest-reviews">
+
+        <h2 class="review-heading">
+            Guest Reviews
+        </h2>
+
+        <% if(listing.reviews.length > 0){ %>
+
+            <div class="reviews-grid">
+
+                <% for(let review of listing.reviews){ %>
+
+                    <div class="review-card">
+
+                        <div class="review-top">
+
+                            <span class="rating-badge">
+                                ⭐ <%= review.rating %>/5
+                            </span>
+
+                        </div>
+
+                        <p class="review-comment">
+                            <%= review.comment %>
+                        </p>
+
+                        <p class="review-date">
+                            <%= review.createdAt.toDateString() %>
+                        </p>
+
+                        <% if(currUser && review.author && review.author._id.equals(currUser._id)){ %>
+
+                            <form
+                                action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                method="POST"
+                            >
+
+                                <button class="delete-review-btn">
+                                    Delete Review
+                                </button>
+
+                            </form>
+
+                        <% } %>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="no-review">
+
+                <p>
+                    No reviews yet. Be the first to review!
+                </p>
+
+            </div>
+
+        <% } %>
+
+    </section>
+
+    <section class="location-section">
+
+        <h2>
+            Location
+        </h2>
+
+        <div id="map"></div>
+
+    </section>
+
+</div>
+
+<script>
+    const lat = <%= listing.geometry.lat %>;
+    const lon = <%= listing.geometry.lon %>;
+    const listingTitle = "<%= listing.title %>";
+</script>
+
+<script src="/js/map.js"></script>

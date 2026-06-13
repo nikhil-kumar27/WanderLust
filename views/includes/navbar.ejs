@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="/stylesheets/navbar.css">
+
+
+<nav class="airbnb-navbar">
+
+    <!-- Left -->
+    <div class="nav-left">
+        <a href="/listings" class="logo-link">
+            <i class="fa-regular fa-compass logo-icon"></i>
+            <span class="logo-text">Wanderlust</span>
+        </a>
+    </div>
+
+    <!-- Center -->
+    <div class="nav-center">
+
+        <form class="search-form" action="/listings" method="GET">
+
+            <input
+                type="search"
+                name="search"
+                class="search-input"
+                placeholder="Search destinations..."
+                value="<%= search || '' %>"
+            >
+            
+            <button class="search-btn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+       
+        </form>
+
+    </div>
+
+    <!-- Right -->
+    <div class="nav-right">
+
+        <a href="/listings/new" class="nav-link-custom">
+            Create Listing
+        </a>
+
+        <% if(!currUser){ %>
+
+            <a href="/login" class="nav-link-custom">
+                Login
+            </a>
+
+            <a href="/signup" class="nav-link-custom">
+                Sign Up
+            </a>
+
+        <% } else { %>
+
+            <div class="dropdown">
+
+                <button
+                    class="btn user-menu dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                >
+                    <i class="fa-solid fa-circle-user"></i>
+                    <%= currUser.username %>
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+                        <span class="dropdown-item-text">
+                            <strong><%= currUser.username %></strong>
+                        </span>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+
+                    <li>
+                        <a class="dropdown-item text-danger" href="/logout">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+</nav>

@@ -1,0 +1,148 @@
+.airbnb-navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: white;
+    border-bottom: 1px solid #ebebeb;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.8rem 3rem;
+}
+
+.nav-left{
+    flex: 1;
+}
+
+.nav-center{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-right{
+    flex: 1;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* logo */
+.logo-link{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon{
+    color: #ff385c;
+    font-size: 2rem;
+}
+
+.logo-text{
+    color: #ff385c;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+/* search */
+
+.search-form{
+    display: flex;
+    align-items: center;
+
+    background: white;
+
+    border: 1px solid #dddddd;
+    border-radius: 999px;
+
+    padding: 0.4rem;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    transition: 0.2s;
+}
+
+.search-form:hover{
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.search-input{
+    border: none;
+    outline: none;
+
+    width: 320px;
+
+    padding: 0.6rem 1rem;
+    background: transparent;
+}
+
+.search-input:focus{
+    box-shadow: none;
+}
+
+.search-btn{
+    border: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #ff385c;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Right Side */
+
+.nav-link-custom{
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+}
+
+.nav-link-custom:hover{
+    color: #ff385c;
+}
+
+.user-menu{
+    border-radius: 30px;
+    border: 1px solid #dddddd;
+
+    padding: 0.5rem 1rem;
+}
+
+.user-menu:hover{
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsive Mobile */
+
+@media(max-width:768px){
+
+    .airbnb-navbar{
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .search-input{
+        width: 220px;
+    }
+
+    .nav-right{
+        justify-content: center;
+    }
+}
+
+/* This layout will look much closer to Airbnb: compact logo on the left, floating pill-shaped search in the center, and account/menu controls aligned cleanly on the right. */
