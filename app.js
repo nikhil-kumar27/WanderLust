@@ -126,6 +126,10 @@ app.use((req, res, next) => {
 // listing route
 app.use("/listings", listingsRouter);
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 // review Route
 app.use("/listings/:id/reviews", reviewRouter);
 
