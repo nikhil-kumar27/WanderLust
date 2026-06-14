@@ -29,12 +29,12 @@ const DB_URL = process.env.ATLASDB_URL;
 
 
 // MongoDB Connection
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 async function main() {
     // console.log(process.env.ATLASDB_URL);
 
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(DB_URL);
 
 }
 
@@ -54,21 +54,21 @@ app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// const store = MongoStore.create({
-//     mongoUrl: DB_URL,
-//     crypto: {
-//         secret: process.env.SECRET,
-//     },
-//     touchAfter: 24 * 3600,
-// });
+const store = MongoStore.create({
+    mongoUrl: DB_URL,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600,
+});
 
-// store.on("error", (err) => {
-//     console.log("SESSION STORE ERROR", err);
-// });
+store.on("error", (err) => {
+    console.log("SESSION STORE ERROR", err);
+});
 
 app.use(
     session({
-        // store,
+        store,
         secret: process.env.SECRET,
 
         resave: false,
@@ -117,18 +117,18 @@ app.use((req, res, next) => {
 });
 
 //root route
-app.get("/", (req,res)=>{
-    res.send("hi,I am root");
-});
+// app.get("/", (req,res)=>{
+//     res.send("hi,I am root");
+// });
 
 
 
 // listing route
 app.use("/listings", listingsRouter);
 
-// app.get("/", (req, res) => {
-//     res.redirect("/listings");
-// });
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 // review Route
 app.use("/listings/:id/reviews", reviewRouter);

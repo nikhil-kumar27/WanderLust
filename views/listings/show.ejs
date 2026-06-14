@@ -27,9 +27,15 @@
             </p>
 
             <div class="listing-info">
+                <% if (listing.category) { %>
+
+                    <p class="listing-category">
+                        Category: <%= listing.category %>
+                    </p>
+                <% } %>
 
                 <p class="listing-price">
-                    ₹ <%= listing.price %> / night
+                    ₹ <%= listing.price %>/night
                 </p>
 
                 <p class="listing-location">

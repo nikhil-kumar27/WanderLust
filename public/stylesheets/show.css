@@ -36,12 +36,24 @@
     margin-bottom:2rem;
 }
 
+.listing-description{
+    font-size:1.05rem;
+    line-height:1.8;
+    color:#555;
+    margin-bottom:1rem;
+}
+
 .listing-info{
     margin-bottom:2rem;
 }
 
+.listing-category{
+    color:#717171;
+    font-size:1rem;
+}
+
 .listing-price{
-    font-size:2rem;
+    font-size:1.5rem;
     font-weight:700;
     color:#222;
     margin-bottom:0.5rem;
