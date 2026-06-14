@@ -17,6 +17,11 @@
                 <%= listing.title %>
             </h1>
 
+            <p>
+                <i>Owned by:</i>
+                <span> <strong><%= listing.owner.username %></strong></span>
+            </p>
+
             <p class="listing-description">
                 <%= listing.description %>
             </p>
@@ -144,8 +149,11 @@
 
                         <div class="review-top">
 
+                            <span> <strong> @<%= listing.owner.username %></strong></span>
+                            <br><br>
+
                             <span class="rating-badge">
-                                ⭐ <%= review.rating %>/5
+                            ⭐ <%= review.rating %>/5
                             </span>
 
                         </div>

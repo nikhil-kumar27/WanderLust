@@ -4,10 +4,17 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
     padding: 40px;
+} */
+
+.form-container {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    max-width: 650px;
+    margin: 2rem auto;
 }
 
 .form-container {
@@ -23,36 +30,33 @@ h1 {
     color: #222;
 }
 
-form {
+.listing-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-input,
-textarea {
+.listing-form input,
+.listing-form textarea,
+.listing-form select {
     padding: 14px;
     border: 1px solid #ddd;
     border-radius: 12px;
     font-size: 1rem;
 }
 
-textarea {
+.listing-form textarea {
     height: 130px;
     resize: none;
 }
 
-button {
+.listing-form button {
     background-color: #ff385c;
     color: white;
     border: none;
     padding: 14px;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
 }
 
-button:hover {
+.listing-form button:hover {
     background-color: #e03150;
 }
